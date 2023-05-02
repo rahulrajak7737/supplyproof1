@@ -50,7 +50,7 @@ class _MySignupscreenState extends State<MySignupscreen> {
   ];
 
  // Role _selectedRole =Role.Buyer;
-  var  = "Buyer";
+  var Role = "Buyer";
   var _currentItemSelected = "Buyer";
 
 
@@ -322,13 +322,16 @@ class _MySignupscreenState extends State<MySignupscreen> {
                               child: Text('Warehouse'),
                             ),
                           ],
-                          onChanged: (value) {
+                          onChanged: (newValueSelected) {
                             setState(() {
-                              _selectedRole = value!;
-                              roleEditingController.text =value as String;
+                             // _selectedRole = value!;
+                             // roleEditingController.text =value as String;
+                             _currentItemSelected = newValueSelected!;
+                                  Role = newValueSelected;
                             });
                           },
                           // validator: ,
+                           value: _currentItemSelected,
 
                         ),
                   SizedBox(
@@ -344,56 +347,59 @@ class _MySignupscreenState extends State<MySignupscreen> {
                             padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                             minWidth: MediaQuery.of(context).size.width,
                             onPressed: (){
-                              final String email = emailEditingController.text.trim();
-                              final String  password = passwordEditingController.text.trim();
-                              final String confirmpassword =confirmpasswordEditingController.text.trim();
-                              if(password ==confirmpassword){
-                                switch(_selectedRole){
-                                  case Role.Producer:
-                                    signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text,  'Producer',locationEditingController.text);
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(builder: (context) => MydashboardProducer()), (route) => false);
+                              //final String email = emailEditingController.text.trim();
+                              //final String  password = passwordEditingController.text.trim();
+                              //final String confirmpassword =confirmpasswordEditingController.text.trim();
+                              //if(password ==confirmpassword){
+                                //switch(_selectedRole){
+                                  //case Role.Producer:
+                                    //signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text,  'Producer',locationEditingController.text);
+                                    //Navigator.pushAndRemoveUntil(context,
+                                      //  MaterialPageRoute(builder: (context) => MydashboardProducer()), (route) => false);
 
-                                    break;
-                                  case Role.Buyer:
-                                    signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text,  'Buyer',locationEditingController.text);
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(builder: (context) => Mydashboardbuyer()), (route) => false);
-
-
-                                    break;
-                                  case Role.Logistics:
-                                    signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text,  'Logistics',locationEditingController.text);
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(builder: (context) => Mydashboardlogistics()), (route) => false);
+                                   // break;
+                                  //case Role.Buyer:
+                                   // signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text,  'Buyer',locationEditingController.text);
+                                   // Navigator.pushAndRemoveUntil(context,
+                                       // MaterialPageRoute(builder: (context) => Mydashboardbuyer()), (route) => false);
 
 
-                                    break;
-                                  case Role.Warehouse:
-                                    signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text ,  'Warehouse',locationEditingController.text);
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(builder: (context) => Mydashboardwarehouse()), (route) => false);
+                                  //  break;
+                                  //case Role.Logistics:
+                                    //signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text,  'Logistics',locationEditingController.text);
+                                    //Navigator.pushAndRemoveUntil(context,
+                                       // MaterialPageRoute(builder: (context) => Mydashboardlogistics()), (route) => false);
 
 
-                                    break;
+                                   // break;
+                                 // case Role.Warehouse:
+                                   // signUp(firstNameEditingController.text, emailEditingController.text, mobileEditingController.text, passwordEditingController.text ,  'Warehouse',locationEditingController.text);
+                                   // Navigator.pushAndRemoveUntil(context,
+                                       // MaterialPageRoute(builder: (context) => Mydashboardwarehouse()), (route) => false);
 
-                                }
-                              }else {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context){
-                                      return AlertDialog(
-                                        title:  Text('Error'),
-                                        content: Text('Wrong Credentials'),
-                                        actions: [
-                                          TextButton(
-                                              onPressed:(){
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text('Ok! Try again'))
-                                        ],
-                                      );
+
+                                   // break;
+
+                               // }
+                             // }else {
+                               // showDialog(
+                                   // context: context,
+                                   // builder: (BuildContext context){
+                                    //  return AlertDialog(
+                                      //  title:  Text('Error'),
+                                       // content: Text('Wrong Credentials'),
+                                      //  actions: [
+                                         // TextButton(
+                                              //onPressed:(){
+                                                //Navigator.of(context).pop();
+                                            //  },
+                                             // child: Text('Ok! Try again'))
+                                       // ],
+                                     // );
+                                     showProgress =true;
                                     });
+                                    signUp(emailController.text,
+                                    passwordController.text, Role);
                               }
 
 
